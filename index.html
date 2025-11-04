@@ -3,276 +3,555 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
+    <!-- iPhone specific meta tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Marcelin's Repair">
-    <meta name="theme-color" content="#1a365d">
+    <meta name="apple-mobile-web-app-title" content="Marcelin Mobile Repair">
+    <meta name="theme-color" content="#0f4c75">
     <meta name="mobile-web-app-capable" content="yes">
     
-    <!-- iPhone App Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon-180x180.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="icons/apple-touch-icon-76x76.png">
+    <title>Marcelin Mobile Repair - Professional Auto Repair at Your Location</title>
+    <meta name="description" content="Professional mobile auto repair services. We come to you! Expert car, truck, and fleet maintenance and repairs at your location.">
     
-    <!-- iPhone Splash Screens -->
-    <link rel="apple-touch-startup-image" href="splash/iphone-splash-2778x1284.png" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3)">
-    <link rel="apple-touch-startup-image" href="splash/iphone-splash-2532x1170.png" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3)">
-    <link rel="apple-touch-startup-image" href="splash/iphone-splash-2340x1080.png" media="(device-width: 360px) and (device-height: 780px) and (-webkit-device-pixel-ratio: 3)">
-    
-    <title>Marcelin's Mobile Repair - Professional Auto Repair in Atlanta</title>
-    <meta name="description" content="Professional mobile auto repair in Atlanta. Thesky Marcelin brings expert car repair service directly to you. Call (404) 123-4567 for service.">
-    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="icon" type="image/png" href="icon-192.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
+<body class="single-scroll-page">
+    <!-- Particle Canvas Background -->
+    <canvas id="particles-canvas"></canvas>
+    
+    <!-- Floating Navigation -->
+    <nav class="floating-nav" id="floatingNav">
         <div class="nav-container">
-            <div class="logo">
-                <img src="logo-placeholder.png" alt="Marcelin's Mobile Repair Logo" class="logo-img">
-                <span class="logo-text">Marcelin's Mobile Repair</span>
+            <div class="logo-container">
+                <img src="logo.jpg" alt="Marcelin Mobile Repair" class="nav-logo">
             </div>
-            <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item">
-                    <a href="index.html" class="nav-link active">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="about.html" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="services.html" class="nav-link">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a href="gallery.html" class="nav-link">Gallery</a>
-                </li>
-                <li class="nav-item">
-                    <a href="contact.html" class="nav-link">Contact</a>
-                </li>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active" data-section="home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#about" class="nav-link" data-section="about"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="#services" class="nav-link" data-section="services"><i class="fas fa-tools"></i> Services</a></li>
+                <li><a href="#gallery" class="nav-link" data-section="gallery"><i class="fas fa-images"></i> Gallery</a></li>
+                <li><a href="#contact" class="nav-link" data-section="contact"><i class="fas fa-phone"></i> Contact</a></li>
             </ul>
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="hero-title fade-in">Professional Mobile Auto Repair</h1>
-                <h2 class="hero-subtitle fade-in delay-1">We Come To You</h2>
-                <p class="hero-description fade-in delay-2">
-                    My name is Thesky Marcelin, proud owner of Marcelin's Auto Repair. 
-                    Serving Atlanta since 2021, my passion for cars started as a kid, 
-                    watching my dad turn wrenches and bring engines back to life. 
-                    That same passion drives me today—keeping you and your car moving forward.
-                </p>
-                <div class="hero-buttons fade-in delay-3">
-                    <a href="contact.html" class="btn btn-primary">Get Quote</a>
-                    <a href="services.html" class="btn btn-secondary">Our Services</a>
-                </div>
-            </div>
-            <div class="hero-image fade-in delay-4">
-                <img src="hero-mechanic.jpg" alt="Professional Auto Mechanic" class="hero-img">
-            </div>
-        </div>
-        <div class="hero-features">
-            <div class="feature-item slide-up delay-5">
-                <i class="fas fa-mobile-alt"></i>
-                <span>Mobile Service</span>
-            </div>
-            <div class="feature-item slide-up delay-6">
-                <i class="fas fa-clock"></i>
-                <span>24/7 Available</span>
-            </div>
-            <div class="feature-item slide-up delay-7">
-                <i class="fas fa-certificate"></i>
-                <span>Certified Experts</span>
-            </div>
-            <div class="feature-item slide-up delay-8">
-                <i class="fas fa-shield-alt"></i>
-                <span>Guaranteed Work</span>
-            </div>
-        </div>
-    </section>
+    <!-- Progress Indicator -->
+    <div class="scroll-progress">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
 
-    <!-- Services Overview -->
-    <section class="services-overview">
-        <div class="container">
-            <h2 class="section-title fade-in-scroll">Our Expert Services</h2>
-            <div class="services-grid">
-                <div class="service-card fade-in-scroll">
-                    <i class="fas fa-tools service-icon"></i>
-                    <h3>Engine Repair</h3>
-                    <p>Complete engine diagnostics and repair services for all vehicle types.</p>
-                </div>
-                <div class="service-card fade-in-scroll">
-                    <i class="fas fa-car-battery service-icon"></i>
-                    <h3>Battery & Electrical</h3>
-                    <p>Battery replacement, electrical system diagnosis, and alternator repair.</p>
-                </div>
-                <div class="service-card fade-in-scroll">
-                    <i class="fas fa-cog service-icon"></i>
-                    <h3>Transmission</h3>
-                    <p>Transmission repair, fluid changes, and complete system overhauls.</p>
-                </div>
-                <div class="service-card fade-in-scroll">
-                    <i class="fas fa-tire service-icon"></i>
-                    <h3>Brake & Tire</h3>
-                    <p>Brake pad replacement, tire installation, and safety inspections.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Skip Navigation -->
+    <div class="skip-nav">
+        <button class="skip-btn" data-target="home"><i class="fas fa-home"></i></button>
+        <button class="skip-btn" data-target="about"><i class="fas fa-user"></i></button>
+        <button class="skip-btn" data-target="services"><i class="fas fa-tools"></i></button>
+        <button class="skip-btn" data-target="gallery"><i class="fas fa-images"></i></button>
+        <button class="skip-btn" data-target="contact"><i class="fas fa-phone"></i></button>
+    </div>
 
-    <!-- Why Choose Us -->
-    <section class="why-choose-us">
-        <div class="container">
-            <div class="why-content">
-                <div class="why-text fade-in-scroll">
-                    <h2>Why Choose Marcelin's Mobile Repair?</h2>
-                    <ul class="why-list">
-                        <li><i class="fas fa-check"></i> Over 4 years serving Atlanta community</li>
-                        <li><i class="fas fa-check"></i> Mobile service - we come to you</li>
-                        <li><i class="fas fa-check"></i> Certified and experienced technicians</li>
-                        <li><i class="fas fa-check"></i> Fair, transparent pricing</li>
-                        <li><i class="fas fa-check"></i> Quality parts and guaranteed work</li>
-                        <li><i class="fas fa-check"></i> Emergency and same-day service available</li>
-                    </ul>
-                    <a href="about.html" class="btn btn-primary">Learn More About Us</a>
+    <!-- Main Content Container -->
+    <main class="main-container">
+        
+        <!-- HOME SECTION -->
+        <section id="home" class="section hero-section">
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <img src="logo.jpg" alt="Marcelin Mobile Repair" class="main-logo">
                 </div>
-                <div class="why-image fade-in-scroll">
-                    <img src="mobile-repair.jpg" alt="Mobile Auto Repair Service" class="why-img">
+                <h1 class="hero-title">
+                    <span class="title-line">Marcelin</span>
+                    <span class="title-line highlight">Mobile Repair</span>
+                </h1>
+                <p class="hero-subtitle">Professional Auto Repair Services at Your Location</p>
+                
+                <div class="hero-features">
+                    <div class="feature-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>We Come to You</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-clock"></i>
+                        <span>24/7 Emergency</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>Certified Technicians</span>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="section-title fade-in-scroll">What Our Customers Say</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card fade-in-scroll">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p>"Thesky saved my day! My car broke down in the middle of nowhere, and he came out within an hour. Professional, knowledgeable, and fair pricing."</p>
-                    <div class="testimonial-author">
-                        <strong>Sarah Johnson</strong>
-                        <span>Atlanta, GA</span>
-                    </div>
-                </div>
-                <div class="testimonial-card fade-in-scroll">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p>"Amazing service! Fixed my transmission right in my driveway. Honest, reliable, and truly cares about his customers. Highly recommend!"</p>
-                    <div class="testimonial-author">
-                        <strong>Mike Rodriguez</strong>
-                        <span>Marietta, GA</span>
-                    </div>
-                </div>
-                <div class="testimonial-card fade-in-scroll">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p>"Best mobile mechanic in Atlanta! Quality work, great prices, and he actually shows up on time. My go-to for all car repairs."</p>
-                    <div class="testimonial-author">
-                        <strong>Jennifer Davis</strong>
-                        <span>Decatur, GA</span>
-                    </div>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn btn-primary pulse">Get Free Quote</a>
+                    <a href="#services" class="btn btn-secondary">Our Services</a>
                 </div>
             </div>
-        </div>
-    </section>
+            
+            <div class="hero-image">
+                <div class="floating-elements">
+                    <div class="float-element" style="--delay: 0s;">🔧</div>
+                    <div class="float-element" style="--delay: 2s;">🚗</div>
+                    <div class="float-element" style="--delay: 4s;">⚡</div>
+                </div>
+            </div>
+        </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-content fade-in-scroll">
-                <h2>Need Auto Repair? We're Here to Help!</h2>
-                <p>Get professional mobile auto repair service in Atlanta. Call now for a free estimate!</p>
-                <div class="cta-buttons">
-                    <a href="tel:+14041234567" class="btn btn-primary btn-large">
-                        <i class="fas fa-phone"></i> Call Now
-                    </a>
-                    <a href="contact.html" class="btn btn-secondary btn-large">
-                        <i class="fas fa-envelope"></i> Get Quote
-                    </a>
+        <!-- ABOUT SECTION -->
+        <section id="about" class="section about-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h2 class="section-title">About Thesky Marcelin</h2>
+                    <p class="section-subtitle">Expert automotive technician with a passion for excellence</p>
+                </div>
+
+                <div class="about-content">
+                    <div class="about-image">
+                        <div class="image-container">
+                            <img src="images/owner-portrait.jpg" alt="Thesky Marcelin - Owner" class="owner-image">
+                            <div class="image-overlay">
+                                <div class="experience-badge">
+                                    <span class="years">15+</span>
+                                    <span class="text">Years Experience</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-text">
+                        <h3>Meet Your Mobile Mechanic</h3>
+                        <p>With over 15 years of automotive expertise, Thesky Marcelin founded Marcelin Mobile Repair to bring professional, reliable auto repair services directly to your location. What started as a passion for fixing cars has evolved into a comprehensive mobile repair service that serves the entire metro area.</p>
+                        
+                        <div class="credentials">
+                            <div class="credential-item">
+                                <i class="fas fa-medal"></i>
+                                <div>
+                                    <h4>ASE Certified Master Technician</h4>
+                                    <p>Certified in all major automotive systems</p>
+                                </div>
+                            </div>
+                            <div class="credential-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <div>
+                                    <h4>Automotive Technology Degree</h4>
+                                    <p>Formal education in modern vehicle systems</p>
+                                </div>
+                            </div>
+                            <div class="credential-item">
+                                <i class="fas fa-handshake"></i>
+                                <div>
+                                    <h4>500+ Satisfied Customers</h4>
+                                    <p>Building trust one repair at a time</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <blockquote class="owner-quote">
+                            "I believe in honest, transparent service. When you call Marcelin Mobile Repair, you're not just getting a mechanic – you're getting a partner who cares about keeping you safely on the road."
+                            <cite>- Thesky Marcelin, Owner</cite>
+                        </blockquote>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services" class="section services-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h2 class="section-title">Our Services</h2>
+                    <p class="section-subtitle">Comprehensive mobile auto repair solutions</p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card featured">
+                        <div class="service-icon">
+                            <i class="fas fa-oil-can"></i>
+                        </div>
+                        <h3>Oil Changes & Maintenance</h3>
+                        <p>Regular maintenance to keep your vehicle running smoothly</p>
+                        <ul class="service-features">
+                            <li>Full synthetic oil changes</li>
+                            <li>Filter replacements</li>
+                            <li>Fluid level checks</li>
+                            <li>Basic inspection</li>
+                        </ul>
+                        <div class="service-price">Starting at $49</div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-battery-three-quarters"></i>
+                        </div>
+                        <h3>Battery Service</h3>
+                        <p>Battery testing, replacement, and charging system diagnostics</p>
+                        <ul class="service-features">
+                            <li>Battery testing</li>
+                            <li>Jump start service</li>
+                            <li>Battery replacement</li>
+                            <li>Charging system check</li>
+                        </ul>
+                        <div class="service-price">Starting at $89</div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-car-crash"></i>
+                        </div>
+                        <h3>Brake Repair</h3>
+                        <p>Complete brake system service and safety inspections</p>
+                        <ul class="service-features">
+                            <li>Brake pad replacement</li>
+                            <li>Rotor service</li>
+                            <li>Fluid replacement</li>
+                            <li>Safety inspection</li>
+                        </ul>
+                        <div class="service-price">Starting at $149</div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <h3>Engine Diagnostics</h3>
+                        <p>Advanced computer diagnostics and engine repair</p>
+                        <ul class="service-features">
+                            <li>Check engine light</li>
+                            <li>Performance issues</li>
+                            <li>Computer scanning</li>
+                            <li>Repair estimates</li>
+                        </ul>
+                        <div class="service-price">Starting at $99</div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-thermometer-half"></i>
+                        </div>
+                        <h3>Cooling System</h3>
+                        <p>Radiator, thermostat, and cooling system maintenance</p>
+                        <ul class="service-features">
+                            <li>Coolant flush</li>
+                            <li>Radiator repair</li>
+                            <li>Thermostat replacement</li>
+                            <li>Hose inspection</li>
+                        </ul>
+                        <div class="service-price">Starting at $79</div>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3>Emergency Repairs</h3>
+                        <p>24/7 emergency roadside assistance and repairs</p>
+                        <ul class="service-features">
+                            <li>Roadside assistance</li>
+                            <li>Emergency repairs</li>
+                            <li>Towing coordination</li>
+                            <li>24/7 availability</li>
+                        </ul>
+                        <div class="service-price">Call for pricing</div>
+                    </div>
+                </div>
+
+                <div class="service-process">
+                    <h3>Our Simple Process</h3>
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <div class="step-number">1</div>
+                            <h4>Call or Text</h4>
+                            <p>Contact us with your vehicle's issue</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">2</div>
+                            <h4>Schedule Service</h4>
+                            <p>We arrange a convenient time and location</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">3</div>
+                            <h4>We Come to You</h4>
+                            <p>Our mobile unit arrives fully equipped</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-number">4</div>
+                            <h4>Expert Repair</h4>
+                            <p>Professional service at your location</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALLERY SECTION -->
+        <section id="gallery" class="section gallery-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h2 class="section-title">Our Work</h2>
+                    <p class="section-subtitle">See the quality of our mobile repair services</p>
+                </div>
+
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all">All Work</button>
+                    <button class="filter-btn" data-filter="engine">Engine</button>
+                    <button class="filter-btn" data-filter="brake">Brakes</button>
+                    <button class="filter-btn" data-filter="maintenance">Maintenance</button>
+                    <button class="filter-btn" data-filter="diagnostic">Diagnostics</button>
+                </div>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-category="engine">
+                        <img src="images/engine-repair-1.jpg" alt="Engine repair service">
+                        <div class="gallery-overlay">
+                            <h4>Engine Overhaul</h4>
+                            <p>Complete engine rebuild performed on-site</p>
+                            <button class="view-btn"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="brake">
+                        <img src="images/brake-service-1.jpg" alt="Brake service">
+                        <div class="gallery-overlay">
+                            <h4>Brake System Service</h4>
+                            <p>Full brake pad and rotor replacement</p>
+                            <button class="view-btn"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="maintenance">
+                        <img src="images/oil-change-1.jpg" alt="Oil change service">
+                        <div class="gallery-overlay">
+                            <h4>Oil Change Service</h4>
+                            <p>Mobile oil change at customer location</p>
+                            <button class="view-btn"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="diagnostic">
+                        <img src="images/diagnostic-1.jpg" alt="Vehicle diagnostics">
+                        <div class="gallery-overlay">
+                            <h4>Computer Diagnostics</h4>
+                            <p>Advanced diagnostic equipment in action</p>
+                            <button class="view-btn"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="engine">
+                        <img src="images/mobile-unit-1.jpg" alt="Mobile repair unit">
+                        <div class="gallery-overlay">
+                            <h4>Mobile Unit Setup</h4>
+                            <p>Fully equipped mobile repair station</p>
+                            <button class="view-btn"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="brake">
+                        <img src="images/customer-happy-1.jpg" alt="Satisfied customer">
+                        <div class="gallery-overlay">
+                            <h4>Happy Customer</h4>
+                            <p>Another satisfied customer drive away</p>
+                            <button class="view-btn"><i class="fas fa-eye"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonials">
+                    <h3>What Our Customers Say</h3>
+                    <div class="testimonial-slider">
+                        <div class="testimonial active">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p>"Thesky saved my day! My car broke down in a parking lot, and he came right to me. Fixed it on the spot with a smile. Highly recommend!"</p>
+                            <cite>- Sarah Johnson</cite>
+                        </div>
+                        <div class="testimonial">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p>"Professional, honest, and convenient. Had my brakes done in my driveway while I worked from home. Can't beat that service!"</p>
+                            <cite>- Mike Rodriguez</cite>
+                        </div>
+                        <div class="testimonial">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p>"Fair pricing and quality work. Thesky explained everything clearly and had me back on the road quickly. Will definitely use again."</p>
+                            <cite>- Lisa Chen</cite>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="section contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">04</span>
+                    <h2 class="section-title">Get in Touch</h2>
+                    <p class="section-subtitle">Ready to schedule your mobile repair service?</p>
+                </div>
+
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <h3>Call or Text</h3>
+                            <p>Get an instant quote</p>
+                            <a href="tel:+1234567890" class="contact-link">(123) 456-7890</a>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3>Email Us</h3>
+                            <p>Send us your questions</p>
+                            <a href="mailto:info@marcelinmobilerepair.com" class="contact-link">info@marcelinmobilerepair.com</a>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h3>Service Area</h3>
+                            <p>We come to you anywhere in</p>
+                            <span class="contact-link">Metro Area & Surrounding</span>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3>Hours</h3>
+                            <p>Monday - Friday: 8AM - 6PM<br>
+                            Saturday: 9AM - 4PM<br>
+                            Sunday: Emergency Only</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-container">
+                        <form class="contact-form" id="contactForm">
+                            <h3>Get Your Free Quote</h3>
+                            
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone">Phone Number *</label>
+                                    <input type="tel" id="phone" name="phone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="vehicle">Vehicle Information *</label>
+                                <input type="text" id="vehicle" name="vehicle" placeholder="Year, Make, Model (e.g., 2018 Honda Civic)" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="service">Service Needed *</label>
+                                <select id="service" name="service" required>
+                                    <option value="">Select a service</option>
+                                    <option value="oil-change">Oil Change & Maintenance</option>
+                                    <option value="battery">Battery Service</option>
+                                    <option value="brakes">Brake Repair</option>
+                                    <option value="engine">Engine Diagnostics</option>
+                                    <option value="cooling">Cooling System</option>
+                                    <option value="emergency">Emergency Repair</option>
+                                    <option value="other">Other / Not Sure</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description">Describe the Issue</label>
+                                <textarea id="description" name="description" rows="4" placeholder="Tell us about the problem or service needed..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="location">Preferred Service Location *</label>
+                                <input type="text" id="location" name="location" placeholder="Address or area where service is needed" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="urgency">Urgency Level</label>
+                                <select id="urgency" name="urgency">
+                                    <option value="routine">Routine - Within a week</option>
+                                    <option value="soon">Soon - Within 2-3 days</option>
+                                    <option value="urgent">Urgent - Within 24 hours</option>
+                                    <option value="emergency">Emergency - ASAP</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary form-submit">
+                                <span>Get Free Quote</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <img src="logo-placeholder.png" alt="Marcelin's Mobile Repair Logo" class="footer-logo-img">
-                        <span class="footer-logo-text">Marcelin's Mobile Repair</span>
-                    </div>
-                    <p>Professional mobile auto repair services in Atlanta and surrounding areas since 2021.</p>
+                <div class="footer-logo">
+                    <img src="logo.jpg" alt="Marcelin Mobile Repair">
+                    <p>Professional mobile auto repair services at your location.</p>
                 </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h3>Services</h3>
-                    <ul class="footer-links">
-                        <li>Engine Repair</li>
-                        <li>Battery & Electrical</li>
-                        <li>Transmission</li>
-                        <li>Brake & Tire Service</li>
-                        <li>Emergency Repairs</li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact Info</h3>
-                    <div class="contact-info">
-                        <p><i class="fas fa-phone"></i> (404) 123-4567</p>
-                        <p><i class="fas fa-envelope"></i> info@marcelinsmobile.com</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Serving Atlanta Metro Area</p>
-                    </div>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-google"></i></a>
-                    </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                    <p><i class="fas fa-envelope"></i> info@marcelinmobilerepair.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Serving Metro Area</p>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2025 Marcelin's Mobile Repair. All rights reserved.</p>
+                <p>&copy; 2024 Marcelin Mobile Repair. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Image Modal -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img id="modalImage" src="" alt="">
+            <div class="modal-caption" id="modalCaption"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 </html>
