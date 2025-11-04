@@ -66,8 +66,8 @@ function initializeParticleSystem() {
         }
     }
     
-    // Create particles
-    for (let i = 0; i < 50; i++) {
+    // Create particles - reduced for cleaner look
+    for (let i = 0; i < 25; i++) {
         particles.push(new Particle());
     }
     
@@ -81,18 +81,18 @@ function initializeParticleSystem() {
             particle.draw();
         });
         
-        // Draw connections between nearby particles
+        // Draw subtle connections between nearby particles
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
                 const dy = particles[i].y - particles[j].y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 
-                if (distance < 100) {
+                if (distance < 80) {  // Reduced connection distance
                     ctx.save();
-                    ctx.globalAlpha = (100 - distance) / 100 * 0.2;
+                    ctx.globalAlpha = (80 - distance) / 80 * 0.1;  // More subtle
                     ctx.strokeStyle = '#ff6b35';
-                    ctx.lineWidth = 1;
+                    ctx.lineWidth = 0.5;  // Thinner lines
                     ctx.beginPath();
                     ctx.moveTo(particles[i].x, particles[i].y);
                     ctx.lineTo(particles[j].x, particles[j].y);
@@ -457,54 +457,16 @@ function initializeMobileOptimizations() {
 
 // ADVANCED VISUAL EFFECTS
 function initializeAdvancedEffects() {
-    // Cursor trail effect (desktop only)
-    if (window.innerWidth > 768) {
-        let cursorTrail = [];
-        const trailLength = 10;
-        
-        document.addEventListener('mousemove', function(e) {
-            cursorTrail.push({ x: e.clientX, y: e.clientY, time: Date.now() });
-            
-            // Limit trail length
-            if (cursorTrail.length > trailLength) {
-                cursorTrail.shift();
-            }
-            
-            // Create trail elements
-            cursorTrail.forEach((point, index) => {
-                const trail = document.createElement('div');
-                trail.style.position = 'fixed';
-                trail.style.left = point.x + 'px';
-                trail.style.top = point.y + 'px';
-                trail.style.width = '4px';
-                trail.style.height = '4px';
-                trail.style.background = '#ff6b35';
-                trail.style.borderRadius = '50%';
-                trail.style.opacity = (index / trailLength) * 0.5;
-                trail.style.pointerEvents = 'none';
-                trail.style.zIndex = '9999';
-                trail.style.transition = 'opacity 0.3s ease';
-                
-                document.body.appendChild(trail);
-                
-                // Remove trail element
-                setTimeout(() => {
-                    if (trail.parentNode) {
-                        trail.parentNode.removeChild(trail);
-                    }
-                }, 300);
-            });
-        });
-    }
+    // Clean hover effects only - no cursor trail
     
-    // Dynamic gradient backgrounds
+    // Subtle gradient backgrounds on hover
     const sections = document.querySelectorAll('.section');
     sections.forEach((section, index) => {
         const colors = ['#ff6b35', '#cc4125', '#ff4500'];
         const gradientColor = colors[index % colors.length];
         
         section.addEventListener('mouseenter', function() {
-            this.style.background = `radial-gradient(circle at 50% 50%, ${gradientColor}15 0%, transparent 70%)`;
+            this.style.background = `radial-gradient(circle at 50% 50%, ${gradientColor}08 0%, transparent 80%)`;
         });
         
         section.addEventListener('mouseleave', function() {
