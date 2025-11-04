@@ -117,25 +117,6 @@ body.single-scroll-page .section {
   justify-content: center;
   padding: 0.75rem 2rem;
   width: 100%;
-  gap: 3rem;
-}
-
-.logo-container .nav-logo {
-  height: 45px;
-  width: auto;
-  filter: drop-shadow(var(--glow-orange));
-  transition: all var(--animation-normal) var(--ease-smooth);
-  border-radius: 8px;
-  border: 2px solid var(--bright-orange);
-  background: rgba(255, 255, 255, 0.1);
-  padding: 4px;
-  animation: logoFloat 3s ease-in-out infinite;
-}
-
-.logo-container .nav-logo:hover {
-  transform: scale(1.15) rotate(5deg);
-  filter: drop-shadow(var(--glow-orange)) drop-shadow(0 0 20px #fff);
-  animation-play-state: paused;
 }
 
 .nav-menu {
@@ -1289,8 +1270,8 @@ body.single-scroll-page .section {
   }
   
   .nav-container {
-    justify-content: space-between;
-    gap: 1rem;
+    justify-content: flex-end;
+    padding: 0.75rem 1rem;
   }
   
   .nav-menu {
