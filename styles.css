@@ -364,11 +364,14 @@ body.single-scroll-page .section {
   background: rgba(0, 0, 0, 0.3);
   padding: 10px;
   box-shadow: var(--glow-orange);
-  transition: transform 0.3s ease;
+  transition: all 0.5s ease;
+  animation: mainLogoAnimation 4s ease-in-out infinite, logoGlow 2s ease-in-out infinite alternate, logoFloat 3s ease-in-out infinite;
 }
 
 .hero-logo .main-logo:hover {
-  transform: scale(1.05);
+  transform: scale(1.15) rotate(10deg);
+  filter: drop-shadow(var(--glow-orange)) drop-shadow(0 0 30px #fff) drop-shadow(0 0 40px var(--bright-orange));
+  animation-play-state: paused;
 }
 
 .hero-title {
@@ -556,6 +559,49 @@ body.single-scroll-page .section {
 @keyframes logoFloat {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-8px); }
+}
+
+@keyframes mainLogoAnimation {
+  0% { 
+    transform: translateY(0px) rotate(0deg) scale(1);
+    border-radius: 15px;
+  }
+  25% { 
+    transform: translateY(-5px) rotate(2deg) scale(1.02);
+    border-radius: 20px;
+  }
+  50% { 
+    transform: translateY(-10px) rotate(0deg) scale(1.05);
+    border-radius: 25px;
+  }
+  75% { 
+    transform: translateY(-5px) rotate(-2deg) scale(1.02);
+    border-radius: 20px;
+  }
+  100% { 
+    transform: translateY(0px) rotate(0deg) scale(1);
+    border-radius: 15px;
+  }
+}
+
+@keyframes logoGlow {
+  0% {
+    box-shadow: 
+      var(--glow-orange),
+      0 0 20px rgba(255, 69, 0, 0.3),
+      0 0 30px rgba(255, 69, 0, 0.2),
+      inset 0 0 20px rgba(255, 69, 0, 0.1);
+    border-color: var(--bright-orange);
+  }
+  100% {
+    box-shadow: 
+      var(--glow-orange),
+      0 0 40px rgba(255, 69, 0, 0.8),
+      0 0 60px rgba(255, 69, 0, 0.6),
+      0 0 80px rgba(255, 69, 0, 0.4),
+      inset 0 0 30px rgba(255, 69, 0, 0.3);
+    border-color: #ff6b35;
+  }
 }
 
 /* ABOUT SECTION */
