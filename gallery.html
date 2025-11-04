@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Gallery - Marcelin's">
+    <meta name="theme-color" content="#1a365d">
+    
+    <!-- iPhone App Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="icons/apple-touch-icon-76x76.png">
+    
+    <title>Gallery - Marcelin's Mobile Repair</title>
+    <meta name="description" content="See our professional mobile auto repair work in Atlanta. Before/after photos, customer testimonials, and quality service examples.">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="logo-placeholder.png" alt="Marcelin's Mobile Repair Logo" class="logo-img">
+                <span class="logo-text">Marcelin's Mobile Repair</span>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="services.html" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="gallery.html" class="nav-link active">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title fade-in">Our Work Gallery</h1>
+            <p class="page-subtitle fade-in delay-1">See the quality and professionalism of our mobile repair services</p>
+        </div>
+    </section>
+
+    <!-- Gallery Filter -->
+    <section class="gallery-filter">
+        <div class="container">
+            <div class="filter-buttons fade-in-scroll">
+                <button class="filter-btn active" data-filter="all">All Work</button>
+                <button class="filter-btn" data-filter="engine">Engine Repair</button>
+                <button class="filter-btn" data-filter="electrical">Electrical</button>
+                <button class="filter-btn" data-filter="brakes">Brakes</button>
+                <button class="filter-btn" data-filter="mobile">Mobile Service</button>
+                <button class="filter-btn" data-filter="before-after">Before & After</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="gallery-grid">
+        <div class="container">
+            <div class="gallery-items">
+                <!-- Engine Repair Images -->
+                <div class="gallery-item fade-in-scroll" data-category="engine before-after">
+                    <div class="gallery-image">
+                        <img src="gallery/engine-repair-1.jpg" alt="Engine Repair Before and After" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h3>Engine Overhaul</h3>
+                                <p>Complete engine rebuild on 2018 Honda Civic</p>
+                                <button class="gallery-btn" onclick="openModal(this)">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-scroll" data-category="engine">
+                    <div class="gallery-image">
+                        <img src="gallery/engine-diagnostic.jpg" alt="Engine Diagnostic Equipment" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h3>Engine Diagnostics</h3>
+                                <p>Advanced diagnostic equipment in action</p>
+                                <button class="gallery-btn" onclick="openModal(this)">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-scroll" data-category="engine">
+                    <div class="gallery-image">
+                        <img src="gallery/oil-change.jpg" alt="Mobile Oil Change Service" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h3>Mobile Oil Change</h3>
+                                <p>Professional oil change at customer location</p>
+                                <button class="gallery-btn" onclick="openModal(this)">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Electrical Work Images -->
+                <div class="gallery-item fade-in-scroll" data-category="electrical">
+                    <div class="gallery-image">
+                        <img src="gallery/battery-replacement.jpg" alt="Battery Replacement Service" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h3>Battery Replacement</h3>
+                                <p>New battery installation with testing</p>
+                                <button class="gallery-btn" onclick="openModal(this)">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-scroll" data-category="electrical">
+                    <div class="gallery-image">
+                        <img src="gallery/alternator-repair.jpg" alt="Alternator Repair Service" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h3>Alternator Service</h3>
+                                <p>Alternator replacement on Ford F-150</p>
+                                <button class="gallery-btn" onclick="openModal(this)">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-scroll" data-category="electrical">
+                    <div class="gallery-image">
+                        <img src="gallery/wiring-repair.jpg" alt="Electrical Wiring Repair" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h3>Wiring Repair</h3>
+                                <p>Professional electrical system repair</p>
+                                <button class="gallery-btn" onclick="openModal(this)">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brake Work Images -->
+                <div class="gallery-item fade-in-scroll" data-category="brakes before-after">
+                    <div class="gallery-image">
+                        <img src="gallery/brake-pads-before-after.jpg" alt="Brake Pad Replacement Before After" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h3>Brake Pad Replacement</h3>
+                                <p>Before and after brake pad installation</p>
+                                <button class="gallery-btn" onclick="openModal(this)">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-scroll" data-category="brakes">
+                    <div class="gallery-image">
+                        <img src="gallery/brake-rotor-service.jpg" alt="Brake Rotor Service" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h3>Brake Rotor Service</h3>
+                                <p>Complete brake system overhaul</p>
+                                <button class="gallery-btn" onclick="openModal(this)">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-scroll" data-category="brakes">
+                    <div class="gallery-image">
+                        <img src="gallery/brake-inspection.jpg" alt="Brake System Inspection" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h3>Brake Inspection</h3>
+                                <p>Thorough brake system safety check</p>
+                                <button class="gallery-btn" onclick="openModal(this)">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Service Images -->
+                <div class="gallery-item fade-in-scroll" data-category="mobile">
+                    <div class="gallery-image">
+                        <img src="gallery/mobile-unit.jpg" alt="Mobile Repair Service Van" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h3>Mobile Service Unit</h3>
+                                <p>Our fully equipped mobile repair van</p>
+                                <button class="gallery-btn" onclick="openModal(this)">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-scroll" data-category="mobile">
+                    <div class="gallery-image">
+                        <img src="gallery/roadside-service.jpg" alt="Roadside Emergency Service" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h3>Roadside Assistance</h3>
+                                <p>Emergency repair service on location</p>
+                                <button class="gallery-btn" onclick="openModal(this)">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-scroll" data-category="mobile">
+                    <div class="gallery-image">
+                        <img src="gallery/home-service.jpg" alt="At-Home Auto Repair Service" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h3>At-Home Service</h3>
+                                <p>Convenient repairs in your driveway</p>
+                                <button class="gallery-btn" onclick="openModal(this)">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools and Equipment -->
+                <div class="gallery-item fade-in-scroll" data-category="mobile">
+                    <div class="gallery-image">
+                        <img src="gallery/professional-tools.jpg" alt="Professional Auto Repair Tools" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h3>Professional Tools</h3>
+                                <p>High-quality equipment for every job</p>
+                                <button class="gallery-btn" onclick="openModal(this)">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-scroll" data-category="engine">
+                    <div class="gallery-image">
+                        <img src="gallery/transmission-service.jpg" alt="Transmission Service" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h3>Transmission Service</h3>
+                                <p>Complete transmission fluid change</p>
+                                <button class="gallery-btn" onclick="openModal(this)">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item fade-in-scroll" data-category="before-after">
+                    <div class="gallery-image">
+                        <img src="gallery/tire-replacement.jpg" alt="Tire Replacement Before After" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h3>Tire Replacement</h3>
+                                <p>Old worn tires replaced with new ones</p>
+                                <button class="gallery-btn" onclick="openModal(this)">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials with Photos -->
+    <section class="photo-testimonials">
+        <div class="container">
+            <h2 class="section-title fade-in-scroll">Happy Customers</h2>
+            <div class="photo-testimonials-grid">
+                <div class="photo-testimonial fade-in-scroll">
+                    <div class="testimonial-image">
+                        <img src="gallery/happy-customer-1.jpg" alt="Satisfied Customer" class="customer-photo">
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Thesky arrived right on time and fixed my car in my driveway. Professional, clean work, and great communication throughout the process!"</p>
+                        <div class="customer-info">
+                            <strong>Sarah M.</strong>
+                            <span>Engine Repair Customer</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="photo-testimonial fade-in-scroll">
+                    <div class="testimonial-image">
+                        <img src="gallery/happy-customer-2.jpg" alt="Satisfied Customer" class="customer-photo">
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Amazing service! My brake pads were completely worn down, and he replaced them right in my parking lot at work. Couldn't be more convenient!"</p>
+                        <div class="customer-info">
+                            <strong>Mike R.</strong>
+                            <span>Brake Service Customer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="photo-testimonial fade-in-scroll">
+                    <div class="testimonial-image">
+                        <img src="gallery/happy-customer-3.jpg" alt="Satisfied Customer" class="customer-photo">
+                    </div>
+                    <div class="testimonial-content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"Emergency call at 9 PM, and he came out to help! Dead battery had me stranded, but Thesky got me back on the road quickly. True lifesaver!"</p>
+                        <div class="customer-info">
+                            <strong>Jennifer D.</strong>
+                            <span>Emergency Service Customer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Modal -->
+    <div id="galleryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="" alt="Gallery Image">
+            <div class="modal-info">
+                <h3 id="modalTitle"></h3>
+                <p id="modalDescription"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content fade-in-scroll">
+                <h2>Ready to Experience Our Quality Service?</h2>
+                <p>Join our satisfied customers and see why we're Atlanta's trusted mobile repair service.</p>
+                <div class="cta-buttons">
+                    <a href="tel:+14041234567" class="btn btn-primary btn-large">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                    <a href="contact.html" class="btn btn-secondary btn-large">
+                        <i class="fas fa-envelope"></i> Get Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="logo-placeholder.png" alt="Marcelin's Mobile Repair Logo" class="footer-logo-img">
+                        <span class="footer-logo-text">Marcelin's Mobile Repair</span>
+                    </div>
+                    <p>Professional mobile auto repair services in Atlanta and surrounding areas since 2021.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li>Engine Repair</li>
+                        <li>Battery & Electrical</li>
+                        <li>Transmission</li>
+                        <li>Brake & Tire Service</li>
+                        <li>Emergency Repairs</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> (404) 123-4567</p>
+                        <p><i class="fas fa-envelope"></i> info@marcelinsmobile.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Serving Atlanta Metro Area</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-google"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Marcelin's Mobile Repair. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
