@@ -25,7 +25,7 @@ app.use('/api/', limiter);
 
 // Email transporter setup
 const createEmailTransporter = () => {
-    return nodemailer.createTransporter({
+    return nodemailer.createTransport({
         service: 'gmail', // or your email service
         auth: {
             user: process.env.EMAIL_USER,

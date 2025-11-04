@@ -1088,13 +1088,39 @@ body.single-scroll-page .section {
   transition: all var(--animation-normal);
 }
 
+/* Enhanced dropdown styling */
+.form-group select {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.form-group select option {
+  background: #0f4c75;
+  color: #ffffff;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
   border-color: var(--primary-color);
   box-shadow: var(--glow-primary);
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+/* Dropdown hover states */
+.form-group select:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 107, 53, 0.5);
+}
+
+.form-group select:focus option {
+  background: #1a5a8a;
+  color: #ffffff;
 }
 
 .form-group textarea {
