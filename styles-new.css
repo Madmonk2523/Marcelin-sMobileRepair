@@ -122,8 +122,12 @@ body.single-scroll-page .section {
 .logo-container .nav-logo {
   height: 50px;
   width: auto;
-  filter: drop-shadow(var(--glow-primary));
+  filter: drop-shadow(var(--glow-orange));
   transition: transform var(--animation-normal) var(--ease-smooth);
+  border-radius: 8px;
+  border: 2px solid var(--bright-orange);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px;
 }
 
 .logo-container .nav-logo:hover {
@@ -366,11 +370,16 @@ body.single-scroll-page .section {
 }
 
 .hero-logo .main-logo {
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   margin-bottom: 2rem;
-  filter: drop-shadow(var(--glow-primary));
+  filter: drop-shadow(var(--glow-orange));
   animation: float 6s ease-in-out infinite;
+  border-radius: 15px;
+  border: 3px solid var(--bright-orange);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  box-shadow: var(--glow-orange);
 }
 
 @keyframes float {
@@ -1210,6 +1219,9 @@ body.single-scroll-page .section {
   width: 80px;
   height: 80px;
   margin-bottom: 1rem;
+  border-radius: 10px;
+  border: 2px solid var(--bright-orange);
+  filter: drop-shadow(var(--glow-orange));
 }
 
 .footer-logo p {
