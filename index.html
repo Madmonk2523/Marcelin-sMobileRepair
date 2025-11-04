@@ -419,10 +419,33 @@
                                 <input type="text" id="location" name="location" placeholder="Address or area where service is needed" required>
                             </div>
 
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="preferred-date">Preferred Date *</label>
+                                    <input type="date" id="preferred-date" name="preferred-date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="preferred-time">Preferred Time *</label>
+                                    <select id="preferred-time" name="preferred-time" required>
+                                        <option value="">Select time</option>
+                                        <option value="08:00">8:00 AM</option>
+                                        <option value="09:00">9:00 AM</option>
+                                        <option value="10:00">10:00 AM</option>
+                                        <option value="11:00">11:00 AM</option>
+                                        <option value="12:00">12:00 PM</option>
+                                        <option value="13:00">1:00 PM</option>
+                                        <option value="14:00">2:00 PM</option>
+                                        <option value="15:00">3:00 PM</option>
+                                        <option value="16:00">4:00 PM</option>
+                                        <option value="17:00">5:00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label for="urgency">Urgency Level</label>
                                 <select id="urgency" name="urgency">
-                                    <option value="routine">Routine - Within a week</option>
+                                    <option value="routine">Routine - Flexible timing</option>
                                     <option value="soon">Soon - Within 2-3 days</option>
                                     <option value="urgent">Urgent - Within 24 hours</option>
                                     <option value="emergency">Emergency - ASAP</option>
@@ -430,8 +453,8 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary form-submit">
-                                <span>Get Free Quote</span>
-                                <i class="fas fa-paper-plane"></i>
+                                <span>Book Appointment</span>
+                                <i class="fas fa-calendar-check"></i>
                             </button>
                         </form>
                     </div>

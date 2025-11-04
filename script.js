@@ -260,6 +260,14 @@ function initializeFormHandling() {
     const contactForm = document.getElementById('contactForm');
     
     if (contactForm) {
+        // Set minimum date to tomorrow
+        const dateInput = document.getElementById('preferred-date');
+        if (dateInput) {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            dateInput.min = tomorrow.toISOString().split('T')[0];
+        }
+        
         // Phone number formatting
         const phoneInput = document.getElementById('phone');
         phoneInput?.addEventListener('input', function(e) {
@@ -273,13 +281,13 @@ function initializeFormHandling() {
         });
         
         // Form submission
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             // Basic validation
             const formData = new FormData(this);
             let isValid = true;
-            const requiredFields = ['name', 'phone', 'vehicle', 'service', 'location'];
+            const requiredFields = ['name', 'phone', 'vehicle', 'service', 'location', 'preferred-date', 'preferred-time'];
             
             requiredFields.forEach(field => {
                 const input = document.getElementById(field);
@@ -292,21 +300,64 @@ function initializeFormHandling() {
             });
             
             if (isValid) {
-                // Show success message
                 const submitBtn = this.querySelector('.form-submit');
                 const originalText = submitBtn.innerHTML;
                 
-                submitBtn.innerHTML = '<span>Quote Sent!</span><i class="fas fa-check"></i>';
-                submitBtn.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+                // Show loading state
+                submitBtn.innerHTML = '<span>Booking...</span><i class="fas fa-spinner fa-spin"></i>';
+                submitBtn.disabled = true;
                 
-                setTimeout(() => {
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.style.background = '';
-                    this.reset();
-                }, 3000);
-                
-                // Here you would normally send the data to your server
-                console.log('Form submitted:', Object.fromEntries(formData));
+                try {
+                    // Send appointment data to server
+                    const response = await fetch('/api/book-appointment', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(Object.fromEntries(formData))
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        // Show success message
+                        submitBtn.innerHTML = '<span>Appointment Booked!</span><i class="fas fa-check"></i>';
+                        submitBtn.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+                        
+                        // Show confirmation modal
+                        showAppointmentConfirmation(result.appointmentId, formData);
+                        
+                        setTimeout(() => {
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.style.background = '';
+                            submitBtn.disabled = false;
+                            this.reset();
+                            
+                            // Reset minimum date
+                            if (dateInput) {
+                                const tomorrow = new Date();
+                                tomorrow.setDate(tomorrow.getDate() + 1);
+                                dateInput.min = tomorrow.toISOString().split('T')[0];
+                            }
+                        }, 3000);
+                        
+                    } else {
+                        throw new Error(result.error || 'Booking failed');
+                    }
+                    
+                } catch (error) {
+                    console.error('Booking error:', error);
+                    submitBtn.innerHTML = '<span>Booking Failed</span><i class="fas fa-exclamation-triangle"></i>';
+                    submitBtn.style.background = 'linear-gradient(135deg, #dc3545, #c82333)';
+                    
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.background = '';
+                        submitBtn.disabled = false;
+                    }, 3000);
+                    
+                    alert('Failed to book appointment. Please try again or call us directly at (123) 456-7890.');
+                }
             }
         });
         
@@ -321,6 +372,71 @@ function initializeFormHandling() {
                 }
             });
         });
+    }
+}
+
+// APPOINTMENT CONFIRMATION
+function showAppointmentConfirmation(appointmentId, formData) {
+    const modal = document.createElement('div');
+    modal.className = 'appointment-confirmation-modal';
+    
+    const serviceName = formData.get('service').replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
+    const date = new Date(formData.get('preferred-date'));
+    const formattedDate = date.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+    
+    const [hours, minutes] = formData.get('preferred-time').split(':');
+    const timeObj = new Date();
+    timeObj.setHours(parseInt(hours), parseInt(minutes));
+    const formattedTime = timeObj.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+    });
+    
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="confirmation-header">
+                <i class="fas fa-check-circle"></i>
+                <h2>Appointment Booked!</h2>
+            </div>
+            <div class="confirmation-details">
+                <p><strong>Appointment ID:</strong> ${appointmentId}</p>
+                <p><strong>Service:</strong> ${serviceName}</p>
+                <p><strong>Date & Time:</strong> ${formattedDate} at ${formattedTime}</p>
+                <p><strong>Vehicle:</strong> ${formData.get('vehicle')}</p>
+                <p><strong>Location:</strong> ${formData.get('location')}</p>
+            </div>
+            <div class="confirmation-note">
+                <i class="fas fa-info-circle"></i>
+                <span>We'll contact you at ${formData.get('phone')} within 1 hour to confirm your appointment details.</span>
+            </div>
+            <button class="btn btn-primary" onclick="closeConfirmationModal()">
+                <span>Got It!</span>
+                <i class="fas fa-thumbs-up"></i>
+            </button>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Show modal with animation
+    setTimeout(() => {
+        modal.classList.add('show');
+    }, 100);
+}
+
+function closeConfirmationModal() {
+    const modal = document.querySelector('.appointment-confirmation-modal');
+    if (modal) {
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.remove();
+        }, 300);
     }
 }
 
