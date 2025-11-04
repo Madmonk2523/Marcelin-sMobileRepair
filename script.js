@@ -260,6 +260,14 @@ function initializeFormHandling() {
     const contactForm = document.getElementById('contactForm');
     
     if (contactForm) {
+        // Initialize date picker with minimum date as tomorrow
+        const dateInput = document.getElementById('preferred-date');
+        if (dateInput) {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            dateInput.min = tomorrow.toISOString().split('T')[0];
+        }
+        
         // Phone number formatting
         const phoneInput = document.getElementById('phone');
         phoneInput?.addEventListener('input', function(e) {
@@ -272,41 +280,53 @@ function initializeFormHandling() {
             e.target.value = value;
         });
         
-        // Form submission
+        // Service selection and pricing
+        const serviceSelect = document.getElementById('service');
+        const pricingCards = document.querySelectorAll('.pricing-card');
+        
+        serviceSelect?.addEventListener('change', function(e) {
+            updatePricingDisplay(e.target.value);
+        });
+        
+        pricingCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const service = this.dataset.service;
+                serviceSelect.value = service;
+                updatePricingDisplay(service);
+            });
+        });
+        
+        // Payment type toggle
+        const paymentRadios = document.querySelectorAll('input[name="payment-type"]');
+        const payDepositBtn = document.getElementById('pay-deposit-btn');
+        const quoteBtn = document.querySelector('.quote-btn');
+        
+        paymentRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'deposit') {
+                    payDepositBtn.style.display = 'flex';
+                    quoteBtn.style.display = 'none';
+                } else {
+                    payDepositBtn.style.display = 'none';
+                    quoteBtn.style.display = 'flex';
+                }
+            });
+        });
+        
+        // Payment deposit button
+        payDepositBtn?.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (validateForm()) {
+                processPayment('deposit');
+            }
+        });
+        
+        // Form submission (quote only)
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Basic validation
-            const formData = new FormData(this);
-            let isValid = true;
-            const requiredFields = ['name', 'phone', 'vehicle', 'service', 'location'];
-            
-            requiredFields.forEach(field => {
-                const input = document.getElementById(field);
-                if (!formData.get(field)) {
-                    input.style.borderColor = '#ff4500';
-                    isValid = false;
-                } else {
-                    input.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                }
-            });
-            
-            if (isValid) {
-                // Show success message
-                const submitBtn = this.querySelector('.form-submit');
-                const originalText = submitBtn.innerHTML;
-                
-                submitBtn.innerHTML = '<span>Quote Sent!</span><i class="fas fa-check"></i>';
-                submitBtn.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
-                
-                setTimeout(() => {
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.style.background = '';
-                    this.reset();
-                }, 3000);
-                
-                // Here you would normally send the data to your server
-                console.log('Form submitted:', Object.fromEntries(formData));
+            if (validateForm()) {
+                processQuoteRequest();
             }
         });
         
@@ -322,6 +342,271 @@ function initializeFormHandling() {
             });
         });
     }
+}
+
+// PRICING AND PAYMENT FUNCTIONS
+function updatePricingDisplay(serviceType) {
+    const pricingCards = document.querySelectorAll('.pricing-card');
+    
+    pricingCards.forEach(card => {
+        card.classList.remove('selected');
+        if (card.dataset.service === serviceType) {
+            card.classList.add('selected');
+        }
+    });
+}
+
+function validateForm() {
+    const form = document.getElementById('contactForm');
+    const formData = new FormData(form);
+    let isValid = true;
+    const requiredFields = ['name', 'phone', 'vehicle', 'service', 'location', 'preferred-date', 'preferred-time'];
+    
+    requiredFields.forEach(field => {
+        const input = document.getElementById(field);
+        if (!formData.get(field)) {
+            input.style.borderColor = '#ff4500';
+            isValid = false;
+        } else {
+            input.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+        }
+    });
+    
+    return isValid;
+}
+
+function getDepositAmount(serviceType) {
+    const deposits = {
+        'oil-change': 2500, // $25.00 in cents
+        'battery': 5000,    // $50.00 in cents
+        'brakes': 7500,     // $75.00 in cents
+        'engine': 5000,     // $50.00 in cents
+        'cooling': 5000,    // $50.00 in cents
+        'emergency': 10000, // $100.00 in cents
+        'other': 5000       // $50.00 in cents
+    };
+    return deposits[serviceType] || 5000;
+}
+
+async function processPayment(type) {
+    const form = document.getElementById('contactForm');
+    const formData = new FormData(form);
+    const serviceType = formData.get('service');
+    
+    // Show loading state
+    const payBtn = document.getElementById('pay-deposit-btn');
+    const originalText = payBtn.innerHTML;
+    payBtn.innerHTML = '<span>Processing...</span><i class="fas fa-spinner fa-spin"></i>';
+    payBtn.disabled = true;
+    
+    try {
+        // Create payment intent with backend
+        const paymentResponse = await fetch('/api/create-payment-intent', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                email: formData.get('email'),
+                vehicle: formData.get('vehicle'),
+                service: formData.get('service'),
+                description: formData.get('description'),
+                location: formData.get('location'),
+                preferredDate: formData.get('preferred-date'),
+                preferredTime: formData.get('preferred-time'),
+                urgency: formData.get('urgency')
+            })
+        });
+        
+        if (!paymentResponse.ok) {
+            throw new Error('Payment setup failed');
+        }
+        
+        const { clientSecret, amount } = await paymentResponse.json();
+        
+        // Initialize Stripe (replace with your publishable key)
+        const stripe = Stripe('pk_test_your_stripe_publishable_key_here');
+        
+        // Create payment element or redirect to Stripe Checkout
+        // For demo purposes, we'll simulate successful payment
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        // Create booking after successful payment
+        const bookingResponse = await fetch('/api/bookings', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                email: formData.get('email'),
+                vehicle: formData.get('vehicle'),
+                service: formData.get('service'),
+                description: formData.get('description'),
+                location: formData.get('location'),
+                preferredDate: formData.get('preferred-date'),
+                preferredTime: formData.get('preferred-time'),
+                urgency: formData.get('urgency'),
+                paymentIntentId: 'simulated_payment'
+            })
+        });
+        
+        if (!bookingResponse.ok) {
+            throw new Error('Booking creation failed');
+        }
+        
+        const bookingResult = await bookingResponse.json();
+        
+        // Show confirmation
+        showBookingConfirmation(bookingResult.booking);
+        
+        // Reset form
+        form.reset();
+        
+    } catch (error) {
+        console.error('Payment failed:', error);
+        alert('Payment processing failed. Please try again or contact us directly at (123) 456-7890.');
+    } finally {
+        payBtn.innerHTML = originalText;
+        payBtn.disabled = false;
+    }
+}
+
+async function processQuoteRequest() {
+    const form = document.getElementById('contactForm');
+    const formData = new FormData(form);
+    const submitBtn = form.querySelector('.quote-btn');
+    const originalText = submitBtn.innerHTML;
+    
+    // Show loading state
+    submitBtn.innerHTML = '<span>Sending...</span><i class="fas fa-spinner fa-spin"></i>';
+    submitBtn.disabled = true;
+    
+    try {
+        // Send quote request to backend
+        const response = await fetch('/api/quotes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                email: formData.get('email'),
+                vehicle: formData.get('vehicle'),
+                service: formData.get('service'),
+                description: formData.get('description'),
+                location: formData.get('location'),
+                preferredDate: formData.get('preferred-date'),
+                preferredTime: formData.get('preferred-time'),
+                urgency: formData.get('urgency')
+            })
+        });
+        
+        if (!response.ok) {
+            throw new Error('Quote request failed');
+        }
+        
+        const result = await response.json();
+        
+        // Show success message
+        submitBtn.innerHTML = '<span>Quote Request Sent!</span><i class="fas fa-check"></i>';
+        submitBtn.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+        
+        setTimeout(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.style.background = '';
+            submitBtn.disabled = false;
+            form.reset();
+            
+            // Reset date picker minimum
+            const dateInput = document.getElementById('preferred-date');
+            if (dateInput) {
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                dateInput.min = tomorrow.toISOString().split('T')[0];
+            }
+        }, 3000);
+        
+    } catch (error) {
+        console.error('Quote request failed:', error);
+        alert('Failed to send quote request. Please try again or call us at (123) 456-7890.');
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
+}
+
+function showBookingConfirmation(bookingData) {
+    // Create confirmation modal
+    const modal = document.createElement('div');
+    modal.className = 'booking-confirmation-modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="confirmation-header">
+                <i class="fas fa-check-circle"></i>
+                <h2>Booking Confirmed!</h2>
+            </div>
+            <div class="confirmation-details">
+                <p><strong>Booking ID:</strong> ${bookingData.bookingId}</p>
+                <p><strong>Service:</strong> ${bookingData.service.replace('-', ' ').toUpperCase()}</p>
+                <p><strong>Date & Time:</strong> ${formatDate(bookingData.preferredDate)} at ${formatTime(bookingData.preferredTime)}</p>
+                <p><strong>Vehicle:</strong> ${bookingData.vehicle}</p>
+                <p><strong>Deposit Paid:</strong> $${bookingData.depositAmount}</p>
+                <p><strong>Service Location:</strong> ${bookingData.location}</p>
+            </div>
+            <div class="confirmation-actions">
+                <p class="confirmation-note">
+                    <i class="fas fa-info-circle"></i>
+                    You will receive a confirmation email shortly with appointment details and our technician's contact information.
+                </p>
+                <button class="btn btn-primary" onclick="closeConfirmationModal()">
+                    <span>Got It!</span>
+                    <i class="fas fa-thumbs-up"></i>
+                </button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Show modal with animation
+    setTimeout(() => {
+        modal.classList.add('show');
+    }, 100);
+}
+
+function closeConfirmationModal() {
+    const modal = document.querySelector('.booking-confirmation-modal');
+    if (modal) {
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.remove();
+        }, 300);
+    }
+}
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    });
+}
+
+function formatTime(timeString) {
+    const [hours, minutes] = timeString.split(':');
+    const date = new Date();
+    date.setHours(parseInt(hours), parseInt(minutes));
+    return date.toLocaleTimeString('en-US', { 
+        hour: 'numeric', 
+        minute: '2-digit',
+        hour12: true 
+    });
 }
 
 // GALLERY SYSTEM
