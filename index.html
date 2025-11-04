@@ -20,9 +20,6 @@
     <link rel="icon" type="image/png" href="icon-192.png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Stripe Payment Processing -->
-    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body class="single-scroll-page">
     <!-- Particle Canvas Background -->
@@ -422,107 +419,20 @@
                                 <input type="text" id="location" name="location" placeholder="Address or area where service is needed" required>
                             </div>
 
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="preferred-date">Preferred Date *</label>
-                                    <input type="date" id="preferred-date" name="preferred-date" required min="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="preferred-time">Preferred Time *</label>
-                                    <select id="preferred-time" name="preferred-time" required>
-                                        <option value="">Select time slot</option>
-                                        <option value="08:00">8:00 AM</option>
-                                        <option value="09:00">9:00 AM</option>
-                                        <option value="10:00">10:00 AM</option>
-                                        <option value="11:00">11:00 AM</option>
-                                        <option value="12:00">12:00 PM</option>
-                                        <option value="13:00">1:00 PM</option>
-                                        <option value="14:00">2:00 PM</option>
-                                        <option value="15:00">3:00 PM</option>
-                                        <option value="16:00">4:00 PM</option>
-                                        <option value="17:00">5:00 PM</option>
-                                    </select>
-                                </div>
-                            </div>
-
                             <div class="form-group">
                                 <label for="urgency">Urgency Level</label>
                                 <select id="urgency" name="urgency">
-                                    <option value="routine">Routine - Flexible timing</option>
+                                    <option value="routine">Routine - Within a week</option>
                                     <option value="soon">Soon - Within 2-3 days</option>
                                     <option value="urgent">Urgent - Within 24 hours</option>
-                                    <option value="emergency">Emergency - ASAP (Call Instead)</option>
+                                    <option value="emergency">Emergency - ASAP</option>
                                 </select>
                             </div>
 
-                            <!-- Pricing & Deposit Section -->
-                            <div class="pricing-section">
-                                <h4>Service Pricing & Deposit</h4>
-                                <div class="pricing-grid">
-                                    <div class="pricing-card" data-service="oil-change">
-                                        <h5>Oil Change & Maintenance</h5>
-                                        <div class="price">$75 - $120</div>
-                                        <div class="deposit">$25 deposit required</div>
-                                    </div>
-                                    <div class="pricing-card" data-service="battery">
-                                        <h5>Battery Service</h5>
-                                        <div class="price">$150 - $250</div>
-                                        <div class="deposit">$50 deposit required</div>
-                                    </div>
-                                    <div class="pricing-card" data-service="brakes">
-                                        <h5>Brake Repair</h5>
-                                        <div class="price">$200 - $500</div>
-                                        <div class="deposit">$75 deposit required</div>
-                                    </div>
-                                    <div class="pricing-card" data-service="engine">
-                                        <h5>Engine Diagnostics</h5>
-                                        <div class="price">$100 - $150</div>
-                                        <div class="deposit">$50 deposit required</div>
-                                    </div>
-                                </div>
-                                <p class="pricing-note">
-                                    <i class="fas fa-info-circle"></i>
-                                    Final price determined after inspection. Deposit secures your appointment and is applied to final bill.
-                                </p>
-                            </div>
-
-                            <!-- Payment Options -->
-                            <div class="payment-section">
-                                <h4>Secure Your Appointment</h4>
-                                <div class="payment-options">
-                                    <label class="payment-option">
-                                        <input type="radio" name="payment-type" value="deposit" checked>
-                                        <div class="option-content">
-                                            <div class="option-icon"><i class="fas fa-calendar-check"></i></div>
-                                            <div class="option-details">
-                                                <strong>Pay Deposit Now</strong>
-                                                <span>Secure appointment with deposit</span>
-                                            </div>
-                                        </div>
-                                    </label>
-                                    <label class="payment-option">
-                                        <input type="radio" name="payment-type" value="quote-only">
-                                        <div class="option-content">
-                                            <div class="option-icon"><i class="fas fa-file-invoice"></i></div>
-                                            <div class="option-details">
-                                                <strong>Get Quote First</strong>
-                                                <span>Receive estimate before booking</span>
-                                            </div>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="form-buttons">
-                                <button type="button" id="pay-deposit-btn" class="btn btn-primary form-submit payment-btn">
-                                    <span>Pay Deposit & Book</span>
-                                    <i class="fas fa-credit-card"></i>
-                                </button>
-                                <button type="submit" class="btn btn-secondary form-submit quote-btn">
-                                    <span>Get Free Quote</span>
-                                    <i class="fas fa-paper-plane"></i>
-                                </button>
-                            </div>
+                            <button type="submit" class="btn btn-primary form-submit">
+                                <span>Get Free Quote</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
                         </form>
                     </div>
                 </div>
