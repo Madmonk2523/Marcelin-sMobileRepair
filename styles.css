@@ -114,24 +114,28 @@ body.single-scroll-page .section {
 .nav-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0.75rem 2rem;
   width: 100%;
+  gap: 3rem;
 }
 
 .logo-container .nav-logo {
-  height: 50px;
+  height: 45px;
   width: auto;
   filter: drop-shadow(var(--glow-orange));
-  transition: transform var(--animation-normal) var(--ease-smooth);
+  transition: all var(--animation-normal) var(--ease-smooth);
   border-radius: 8px;
   border: 2px solid var(--bright-orange);
   background: rgba(255, 255, 255, 0.1);
   padding: 4px;
+  animation: logoFloat 3s ease-in-out infinite;
 }
 
 .logo-container .nav-logo:hover {
-  transform: scale(1.1);
+  transform: scale(1.15) rotate(5deg);
+  filter: drop-shadow(var(--glow-orange)) drop-shadow(0 0 20px #fff);
+  animation-play-state: paused;
 }
 
 .nav-menu {
@@ -568,6 +572,11 @@ body.single-scroll-page .section {
   50% { transform: translate(10px, -10px) rotate(5deg); }
 }
 
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
 /* ABOUT SECTION */
 .about-section {
   background: linear-gradient(135deg, var(--surface-color) 0%, rgba(255, 107, 53, 0.05) 50%, var(--surface-color) 100%);
@@ -865,120 +874,10 @@ body.single-scroll-page .section {
   color: var(--text-secondary);
 }
 
-/* GALLERY SECTION */
-.gallery-section {
+/* TESTIMONIALS SECTION */
+.testimonials-section {
   background: linear-gradient(135deg, var(--surface-color) 0%, rgba(255, 69, 0, 0.08) 50%, var(--surface-color) 100%);
   min-height: 100vh;
-}
-
-.gallery-filters {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 3rem;
-  flex-wrap: wrap;
-}
-
-.filter-btn {
-  padding: 0.75rem 1.5rem;
-  border: 2px solid var(--primary-color);
-  background: transparent;
-  color: var(--text-secondary);
-  border-radius: 25px;
-  cursor: pointer;
-  transition: all var(--animation-normal);
-  font-weight: 500;
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-  background: var(--gradient-primary);
-  color: var(--text-primary);
-  transform: translateY(-2px);
-  box-shadow: var(--glow-primary);
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
-}
-
-.gallery-item {
-  position: relative;
-  border-radius: 15px;
-  overflow: hidden;
-  aspect-ratio: 4/3;
-  background: var(--surface-color);
-  transition: all var(--animation-normal);
-}
-
-.gallery-item:hover {
-  transform: scale(1.05);
-  box-shadow: var(--shadow-large);
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--animation-slow);
-}
-
-.gallery-item:hover img {
-  transform: scale(1.1);
-}
-
-.gallery-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-  padding: 2rem 1.5rem 1.5rem;
-  color: var(--text-primary);
-  transform: translateY(100%);
-  transition: transform var(--animation-normal);
-}
-
-.gallery-item:hover .gallery-overlay {
-  transform: translateY(0);
-}
-
-.gallery-overlay h4 {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  color: var(--bright-orange);
-}
-
-.gallery-overlay p {
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-}
-
-.view-btn {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 40px;
-  height: 40px;
-  border: none;
-  border-radius: 50%;
-  background: var(--gradient-primary);
-  color: var(--text-primary);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transform: scale(0);
-  transition: all var(--animation-normal) var(--ease-in-out-back);
-}
-
-.gallery-item:hover .view-btn {
-  opacity: 1;
-  transform: scale(1);
 }
 
 /* TESTIMONIALS */
@@ -1387,6 +1286,11 @@ body.single-scroll-page .section {
     width: 95%;
     background: rgba(0, 0, 0, 0.95);
     border: 2px solid var(--bright-orange);
+  }
+  
+  .nav-container {
+    justify-content: space-between;
+    gap: 1rem;
   }
   
   .nav-menu {
